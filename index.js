@@ -23,7 +23,7 @@ bot.on('message', (message) => {
 				let deletePromise = bot.deleteMessage(message.chat.id, message.message_id);
 				let kickPromise = bot.kickChatMember(message.chat.id, message.from.id);
 				Promise.all([deletePromise, kickPromise]).then(() => {
-					console.log("Done");
+					console.log(`[${new Date()}]`);
 				});
 			}
 		});
