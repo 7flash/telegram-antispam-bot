@@ -18,7 +18,14 @@ const bot = new Bot(token, { polling: true });
 
 bot.on('message', (message) => {
 	if(containsDomain(message.text)) {
-		bot.deleteMessage(message.chat.id, message.message_id);
-		console.log("Removed message");
+		bot.getChatMember(message.chat.id, message.from.id).then((data) => {
+			if (data.status !== "creator" && data.status !== "administrator") {
+				let deletePromise = bot.deleteMessage(message.chat.id, message.message_id);
+				let kickPromise = bot.kickChatMember(message.chat.id, message.from.id);
+				Promise.all([deletePromise, kickPromise]).then(() => {
+					console.log("Done");
+				});
+			}
+		});
 	}
 });
