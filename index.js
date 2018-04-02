@@ -1,9 +1,13 @@
+const fs = require("fs");
+const path = require("path");
 const Bot = require('node-telegram-bot-api');
 
 const domains = require("./domains.json");
 const questions = require("./questions.json");
+const startTemplate = fs.readFileSync("./start_template").toString();
 
-const command = '/show';
+const showCommand = '/show';
+const startCommand = '/start';
 
 const devToken = '504157066:AAGPuih7wRfL6gkTUL8M9gA-9rYRDA-6Hf0';
 const prodToken = '592274947:AAEm2fSBDixNDzUVUUu11agTTpy1qJyr2Dg';
@@ -22,12 +26,15 @@ function containsDomain(string) {
 }
 
 function reply(message) {
-	if(message.text.startsWith(command)) {
-		const topic = message.text.substr(command.length + 1);
+	if(message.text.startsWith(showCommand)) {
+		const topic = message.text.substr(showCommand.length + 1);
 
 		if(questions[topic]) {
 			bot.sendMessage(message.chat.id, questions[topic]);
 		}
+	} else if(message.text.startsWith(startCommand)) {
+		const startMessage = startTemplate.replace('<NAMEOFUSER>', message.from.first_name);
+		bot.sendMessage(message.chat.id, startMessage);
 	}
 }
 
