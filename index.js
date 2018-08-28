@@ -9,8 +9,8 @@ const startTemplate = fs.readFileSync("./start_template").toString();
 const showCommand = '/show';
 const startCommand = '/start';
 
-const devToken = '504157066:AAGPuih7wRfL6gkTUL8M9gA-9rYRDA-6Hf0';
-const prodToken = '592274947:AAEm2fSBDixNDzUVUUu11agTTpy1qJyr2Dg';
+const devToken = '';
+const prodToken = '';
 const token = process.env.dev ? devToken : prodToken;
 
 const bot = new Bot(token, { polling: true });
