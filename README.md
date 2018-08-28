@@ -9,7 +9,7 @@
 1) `vim questions.json`
 2) `git add questions.json && git commit -m "questions"`
 3) `ssh -i key.pem ubuntu@amazonaws.com`
-4) `cd chatbot && git pull`
+4) `cd telegram-antispam-bot && git pull`
 5) `sudo pm2 restart index`
 6) `sudo pm2 status`
 
@@ -17,6 +17,6 @@
 1) `vim start_template.json`
 2) `git add start_template && git commit -m "start"`
 3) `ssh -i key.pem ubuntu@amazonaws.com`
-4) `cd chatbot && git pull`
+4) `cd telegram-antispam-bot && git pull`
 5) `sudo pm2 restart index`
 6) `sudo pm2 status`
